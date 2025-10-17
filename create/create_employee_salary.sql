@@ -1,4 +1,4 @@
-CREATE TABLE  salary (
+CREATE TABLE  employee_salary (
   salary_id SERIAL PRIMARY KEY,
     employee_id INT,
     basic_pay NUMERIC(10,2),
