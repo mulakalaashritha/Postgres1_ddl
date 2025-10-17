@@ -26,7 +26,6 @@ jobs:
           PGHOST: ${{ secrets.PG_HOST }}
           PGPORT: ${{ secrets.PG_PORT }}
           PGUSER: ${{ secrets.PG_USER }}
-          # PGPASSWORD: ${{ secrets.PG_PASSWORD }}
           PGDATABASE: ${{ secrets.PG_DATABASE }}
         run: |
           echo "Connecting to PostgreSQL..."
