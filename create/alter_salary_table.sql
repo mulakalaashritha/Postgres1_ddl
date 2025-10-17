@@ -1,0 +1,1 @@
+ALTER TABLE employee_salary ADD COLUMN pay_date DATE DEFAULT CURRENT_DATE;
