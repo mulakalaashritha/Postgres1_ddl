@@ -33,6 +33,6 @@ jobs:
           for file in ddl/*.sql; do
             echo "-------------------------------------"
             echo "Running DDL file: $file"
-            psql "host=$PGHOST port=$PGPORT user=$PGUSER password=$PGPASSWORD dbname=$PGDATABASE" -f "$file"
+            psql "host=$PGHOST port=$PGPORT user=$PGUSER  dbname=$PGDATABASE" -f "$file"
           done
           echo " All DDL commands executed successfully on salary table!"
