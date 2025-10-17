@@ -1,0 +1,38 @@
+name: Execute PostgreSQL DDL Commands on Salary Table
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-ddl:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Install PostgreSQL client
+      - name: Install PostgreSQL Client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+
+      # Step 3: Run all DDL files on salary table
+      - name: Run DDL Commands on Salary Table
+        env:
+          PGHOST: ${{ secrets.PG_HOST }}
+          PGPORT: ${{ secrets.PG_PORT }}
+          PGUSER: ${{ secrets.PG_USER }}
+          PGPASSWORD: ${{ secrets.PG_PASSWORD }}
+          PGDATABASE: ${{ secrets.PG_DATABASE }}
+        run: |
+          echo "Connecting to PostgreSQL..."
+          for file in ddl/*.sql; do
+            echo "-------------------------------------"
+            echo "Running DDL file: $file"
+            psql "host=$PGHOST port=$PGPORT user=$PGUSER password=$PGPASSWORD dbname=$PGDATABASE" -f "$file"
+          done
+          echo " All DDL commands executed successfully on salary table!"
