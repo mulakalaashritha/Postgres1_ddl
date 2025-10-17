@@ -30,7 +30,7 @@ jobs:
           PGDATABASE: ${{ secrets.PG_DATABASE }}
         run: |
           echo "Connecting to PostgreSQL..."
-          for file in ddl/*.sql; do
+          for file in create/*.sql; do
             echo "-------------------------------------"
             echo "Running DDL file: $file"
             psql "host=$PGHOST port=$PGPORT user=$PGUSER  dbname=$PGDATABASE" -f "$file"
